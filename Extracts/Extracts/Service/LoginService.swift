@@ -21,15 +21,17 @@ class LoginService {
     
     func doLogin(user: String, password: String, success: @escaping (Extract?) -> Void, failure: @escaping (String?) -> Void) {
         let pwd = ["pwd": password]
-        Alamofire.request(String(describing: baseURL!), method: .post, parameters: pwd).responseObject { (response: DataResponse<ResponseWrapper<Extract>>) in
-            switch response.result {
-            case let .success (value):
-                if let data: ResponseWrapper = response.result.value {
-                    success(data.data)
+        Alamofire.request(String(describing: baseURL!), method: .post, parameters: pwd)
+            //.responseString(completionHandler: {print($0)}) //Ver o service para saber se é erro de serializable
+            .responseObject { (response: DataResponse<ResponseWrapper<Extract>>) in
+                switch response.result {
+                case let .success (value):
+                    if let data: ResponseWrapper = value {
+                        success(data.data)
+                    }
+                case let .failure (value):
+                    failure(value.localizedDescription)
                 }
-            case let .failure (value):
-                print (value)
-            }
         }
     }
 }

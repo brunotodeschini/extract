@@ -48,7 +48,15 @@ class LoginViewController: UIViewController {
         let user = self.loginTextField.text
         let password = self.passwordTextField.text
         if user != nil && password != nil {
-            LoginViewModel().doLogin(user: user!, password: password!)
+            LoginViewModel().doLogin(user: user!, password: password!,
+                success: {extract in
+                    let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let newViewController = storyBoard.instantiateViewController(withIdentifier: "ExtractListViewController") as! ExtractListViewController
+                    newViewController.extract = extract
+                    self.navigationController?.pushViewController(newViewController, animated: true)
+            }, failure: {message in
+                print (message ?? "Erro")
+            })
         }
     }
 }

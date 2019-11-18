@@ -10,12 +10,12 @@ import Foundation
 
 class LoginViewModel {
     
-    func doLogin(user: String, password: String){
+    func doLogin(user: String, password: String, success: @escaping (Extract?) -> Void, failure: @escaping (String?) -> Void){
         let service = LoginService()
         service.doLogin(user: user, password: password, success: { extract in
-            print(extract)
+            success(extract)
         }, failure: {message in
-           
+           failure(message)
         })
     }
 }

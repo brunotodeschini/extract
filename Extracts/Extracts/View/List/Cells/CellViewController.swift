@@ -9,7 +9,13 @@
 import UIKit
 
 class CellViewController: UITableViewCell {
-
+    
+    @IBOutlet weak var checkBox: UIImageView!
+    @IBOutlet weak var labelPastDue: UILabel!
+    @IBOutlet weak var labelCarnet: UILabel!
+    @IBOutlet weak var labelInstallment: UILabel!
+    @IBOutlet weak var labelValue: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -17,11 +17,7 @@ struct Extract: Codable, Mappable {
     var installments: [Installments]?
     var limits: Limits?
     
-    init?(map: Map) {
-        if map.JSON["data"] == nil {
-            return nil
-        }
-    }
+    init?(map: Map) {}
     
     mutating func mapping(map: Map) {
         self.name <- map["name"]

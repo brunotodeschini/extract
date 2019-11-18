@@ -27,6 +27,8 @@
 		FDBD61622379901900E69ADB /* Limits.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBD61612379901900E69ADB /* Limits.swift */; };
 		FDBD6164237994FC00E69ADB /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBD6163237994FC00E69ADB /* Detail.swift */; };
 		FDBD6166237997C300E69ADB /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBD6165237997C300E69ADB /* LoginService.swift */; };
+		FDFEF0F2238305A00069B9F4 /* verified.png in Resources */ = {isa = PBXBuildFile; fileRef = FDFEF0F1238305A00069B9F4 /* verified.png */; };
+		FDFEF0F423830CE40069B9F4 /* empty.png in Resources */ = {isa = PBXBuildFile; fileRef = FDFEF0F323830CE30069B9F4 /* empty.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +81,8 @@
 		FDBD61612379901900E69ADB /* Limits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Limits.swift; sourceTree = "<group>"; };
 		FDBD6163237994FC00E69ADB /* Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		FDBD6165237997C300E69ADB /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
+		FDFEF0F1238305A00069B9F4 /* verified.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = verified.png; sourceTree = "<group>"; };
+		FDFEF0F323830CE30069B9F4 /* empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = empty.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,20 +136,27 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		FDA919E4237DEC2700ED70D9 /* Scene */ = {
+		FDA919E4237DEC2700ED70D9 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
 				FDA919E2237DE8C300ED70D9 /* ExtractListViewController.swift */,
 			);
-			path = Scene;
+			path = Scenes;
 			sourceTree = "<group>";
 		};
-		FDA919E5237DEC3000ED70D9 /* Cell */ = {
+		FDA919E5237DEC3000ED70D9 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				FDA919E9237DEE6C00ED70D9 /* CellViewController.swift */,
 			);
-			path = Cell;
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		FDA919EB237E0A5600ED70D9 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		FDBD61142375CAF900E69ADB = {
@@ -173,6 +184,7 @@
 		FDBD611F2375CAF900E69ADB /* Extracts */ = {
 			isa = PBXGroup;
 			children = (
+				FDA919EB237E0A5600ED70D9 /* Utils */,
 				FDBD615C23798E7F00E69ADB /* Service */,
 				FDBD61522375CDC500E69ADB /* Storyboards */,
 				FDBD61512375CDBF00E69ADB /* View */,
@@ -180,7 +192,7 @@
 				FDBD61202375CAF900E69ADB /* AppDelegate.swift */,
 				FDBD61222375CAF900E69ADB /* SceneDelegate.swift */,
 				FDBD61292375CB1500E69ADB /* Assets.xcassets */,
-				FDBD612B2375CB1500E69ADB /* LaunchScreen.storyboard */,
+				FDFEF0F523830D040069B9F4 /* Assets */,
 				FDBD612E2375CB1500E69ADB /* Info.plist */,
 			);
 			path = Extracts;
@@ -229,6 +241,7 @@
 		FDBD61522375CDC500E69ADB /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				FDBD612B2375CB1500E69ADB /* LaunchScreen.storyboard */,
 				FDBD61562375CE2A00E69ADB /* Main.storyboard */,
 			);
 			path = Storyboards;
@@ -246,8 +259,8 @@
 		FDBD61542375CDEC00E69ADB /* List */ = {
 			isa = PBXGroup;
 			children = (
-				FDA919E5237DEC3000ED70D9 /* Cell */,
-				FDA919E4237DEC2700ED70D9 /* Scene */,
+				FDA919E5237DEC3000ED70D9 /* Cells */,
+				FDA919E4237DEC2700ED70D9 /* Scenes */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -265,6 +278,15 @@
 				FDBD6165237997C300E69ADB /* LoginService.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		FDFEF0F523830D040069B9F4 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				FDFEF0F323830CE30069B9F4 /* empty.png */,
+				FDFEF0F1238305A00069B9F4 /* verified.png */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -377,6 +399,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FDBD612D2375CB1500E69ADB /* LaunchScreen.storyboard in Resources */,
+				FDFEF0F2238305A00069B9F4 /* verified.png in Resources */,
+				FDFEF0F423830CE40069B9F4 /* empty.png in Resources */,
 				FDBD612A2375CB1500E69ADB /* Assets.xcassets in Resources */,
 				FDBD61572375CE2A00E69ADB /* Main.storyboard in Resources */,
 			);
