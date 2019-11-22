@@ -52,17 +52,18 @@ class ExtractListViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell: CellViewController = tableView.cellForRow(at: indexPath) as! CellViewController
-        if (cell.isSelected) {
-             cell.checkBox.image = UIImage(named: "empty")
-        } else {
-            cell.checkBox.image = UIImage(named: "verified")
-            cell.backgroundColor = UIColor(named: "#FFFFFF")
-        }
+        
     }
     
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
+        let cell: CellViewController = tableView.cellForRow(at: indexPath) as! CellViewController
+        if (cell.isSelected) {
+             cell.checkBox.image = UIImage(named: "empty")
+        } else {
+            cell.checkBox.image = UIImage(named: "verified")
+            //cell.backgroundColor = UIColor(named: "#FFFFFF")
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
