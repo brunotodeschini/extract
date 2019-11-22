@@ -10,8 +10,8 @@
 		2D8EAB61E5E386131A537A6D /* Pods_Extracts_ExtractsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57A6940CE36FA7FCA24C8AC4 /* Pods_Extracts_ExtractsUITests.framework */; };
 		B7D7DCB832BEE24C054AF4BD /* Pods_Extracts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C97050F674A9C4B1CC1FD0 /* Pods_Extracts.framework */; };
 		D299B473070F500B8DFE863D /* Pods_ExtractsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 991860C4AAC47631D7FCDD91 /* Pods_ExtractsTests.framework */; };
+		FD6FBC0B23880707006D84D3 /* ExtracListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6FBC0A23880707006D84D3 /* ExtracListViewController.swift */; };
 		FDA919E1237DC32300ED70D9 /* ResponseWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA919E0237DC32300ED70D9 /* ResponseWrapper.swift */; };
-		FDA919E3237DE8C300ED70D9 /* ExtractListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA919E2237DE8C300ED70D9 /* ExtractListViewController.swift */; };
 		FDA919EA237DEE6C00ED70D9 /* CellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA919E9237DEE6C00ED70D9 /* CellViewController.swift */; };
 		FDBD61212375CAF900E69ADB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBD61202375CAF900E69ADB /* AppDelegate.swift */; };
 		FDBD61232375CAF900E69ADB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBD61222375CAF900E69ADB /* SceneDelegate.swift */; };
@@ -58,8 +58,8 @@
 		991860C4AAC47631D7FCDD91 /* Pods_ExtractsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExtractsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB8D109AB0EC5F0DE28A6069 /* Pods-Extracts.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Extracts.debug.xcconfig"; path = "Target Support Files/Pods-Extracts/Pods-Extracts.debug.xcconfig"; sourceTree = "<group>"; };
 		F9005A30DC9A01E2A1D1E513 /* Pods-Extracts.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Extracts.release.xcconfig"; path = "Target Support Files/Pods-Extracts/Pods-Extracts.release.xcconfig"; sourceTree = "<group>"; };
+		FD6FBC0A23880707006D84D3 /* ExtracListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtracListViewController.swift; sourceTree = "<group>"; };
 		FDA919E0237DC32300ED70D9 /* ResponseWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseWrapper.swift; sourceTree = "<group>"; };
-		FDA919E2237DE8C300ED70D9 /* ExtractListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtractListViewController.swift; sourceTree = "<group>"; };
 		FDA919E9237DEE6C00ED70D9 /* CellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewController.swift; sourceTree = "<group>"; };
 		FDBD611D2375CAF900E69ADB /* Extracts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Extracts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDBD61202375CAF900E69ADB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -139,7 +139,7 @@
 		FDA919E4237DEC2700ED70D9 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				FDA919E2237DE8C300ED70D9 /* ExtractListViewController.swift */,
+				FD6FBC0A23880707006D84D3 /* ExtracListViewController.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -537,10 +537,10 @@
 				FDA919E1237DC32300ED70D9 /* ResponseWrapper.swift in Sources */,
 				FDBD6166237997C300E69ADB /* LoginService.swift in Sources */,
 				FDA919EA237DEE6C00ED70D9 /* CellViewController.swift in Sources */,
+				FD6FBC0B23880707006D84D3 /* ExtracListViewController.swift in Sources */,
 				FDBD61622379901900E69ADB /* Limits.swift in Sources */,
 				FDBD61602379900700E69ADB /* Installments.swift in Sources */,
 				FDBD61212375CAF900E69ADB /* AppDelegate.swift in Sources */,
-				FDA919E3237DE8C300ED70D9 /* ExtractListViewController.swift in Sources */,
 				FDBD61232375CAF900E69ADB /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
