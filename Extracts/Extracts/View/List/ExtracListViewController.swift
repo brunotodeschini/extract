@@ -52,19 +52,22 @@ class ExtractListViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell: CellViewController = tableView.cellForRow(at: indexPath) as! CellViewController
+        cell.checkBox.image = UIImage(named: "verified")
+        if let installment = extract?.installments?[indexPath.item] {
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let newViewController = storyBoard.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
+            newViewController.extract = extract
+            newViewController.detail = installment.detail
+            self.navigationController?.pushViewController(newViewController, animated: true)
+        }
         
     }
     
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let cell: CellViewController = tableView.cellForRow(at: indexPath) as! CellViewController
-        if (cell.isSelected) {
-             cell.checkBox.image = UIImage(named: "empty")
-        } else {
-            cell.checkBox.image = UIImage(named: "verified")
-            //cell.backgroundColor = UIColor(named: "#FFFFFF")
-        }
+        cell.checkBox.image = UIImage(named: "empty")
     }
+    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60.0
