@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ExtractListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ExtractListViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate {
     
     var extract: Extract?
     
@@ -19,6 +19,7 @@ class ExtractListViewController: UIViewController, UITableViewDataSource, UITabl
     @IBOutlet weak var extractTable: UITableView!
     
     override func viewDidLoad() {
+        self.hideLoader()
         super.viewDidLoad()
         self.loadComponents()
         self.extractTable.dataSource = self
@@ -78,5 +79,5 @@ class ExtractListViewController: UIViewController, UITableViewDataSource, UITabl
         let newViewController = storyBoard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
         self.navigationController?.pushViewController(newViewController, animated: true)
     }
-
+    
 }

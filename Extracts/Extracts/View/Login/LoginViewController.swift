@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: BaseViewController {
 
     @IBOutlet weak var loginTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -45,6 +45,7 @@ class LoginViewController: UIViewController {
     
     
     @IBAction func doLogin(_ sender: Any) {
+        self.showLoader()
         let user = self.loginTextField.text
         let password = self.passwordTextField.text
         if user != nil && password != nil {
@@ -55,8 +56,10 @@ class LoginViewController: UIViewController {
                     newViewController.extract = extract
                     self.navigationController?.pushViewController(newViewController, animated: true)
             }, failure: {message in
+                self.hideLoader()
                 print (message ?? "Erro")
             })
         }
     }
+    
 }
