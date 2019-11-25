@@ -46,10 +46,8 @@ class LoginViewController: BaseViewController {
     
     @IBAction func doLogin(_ sender: Any) {
         self.showLoader()
-        let user = self.loginTextField.text
-        let password = self.passwordTextField.text
-        if user != nil && password != nil {
-            LoginViewModel().doLogin(user: user!, password: password!,
+        if let user = self.loginTextField.text, let password = self.passwordTextField.text {
+            LoginViewModel().doLogin(user: user, password: password,
                 success: {extract in
                     let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                     let newViewController = storyBoard.instantiateViewController(withIdentifier: "ExtractListViewController") as! ExtractListViewController
@@ -57,9 +55,8 @@ class LoginViewController: BaseViewController {
                     self.navigationController?.pushViewController(newViewController, animated: true)
             }, failure: {message in
                 self.hideLoader()
-                print (message ?? "Erro")
-            })
+                self.showAlertError(message: message ?? "Erro desconhecido")
+        })
         }
     }
-    
 }
