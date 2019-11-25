@@ -38,6 +38,12 @@ class DetailsViewController: UIViewController {
     }
     
 
+    @IBAction func backButton(_ sender: Any) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "ExtractListViewController") as! ExtractListViewController
+        newViewController.extract = extract
+        self.navigationController?.pushViewController(newViewController, animated: true)
+    }
     
 
 }
