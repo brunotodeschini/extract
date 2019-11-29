@@ -26,9 +26,16 @@ class LoginService {
             .responseObject { (response: DataResponse<ResponseWrapper<Extract>>) in
                 switch response.result {
                 case let .success (value):
-                    if let data: ResponseWrapper = value {
-                        success(data.data)
+                    if value.code == 200 {
+                        if let data: ResponseWrapper = value {
+                            success(data.data)
+                        } else {
+                            failure(value.status)
+                        }
+                    } else {
+                        failure(value.status)
                     }
+                    
                 case let .failure (value):
                     failure(value.localizedDescription)
                 }

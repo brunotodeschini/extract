@@ -8,15 +8,15 @@
 
 import UIKit
 
-class ExtractListViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate {
-    
-    var extract: Extract?
+class ExtractListViewController: BaseViewController {
     
     @IBOutlet weak var labelName: UILabel!
     @IBOutlet weak var labelAvailable: UILabel!
     @IBOutlet weak var labelTotal: UILabel!
     @IBOutlet weak var labelExpent: UILabel!
     @IBOutlet weak var extractTable: UITableView!
+    
+    var viewModel: ExtractListViewModel? = nil
     
     override func viewDidLoad() {
         self.hideLoader()
@@ -28,21 +28,58 @@ class ExtractListViewController: BaseViewController, UITableViewDataSource, UITa
     
 
     func loadComponents() {
-        guard let extract: Extract = extract else { return }
+        guard let extract: Extract = self.viewModel?.myExtract else { return }
         labelName.text = extract.name
         labelAvailable.text = extract.limits?.available
         labelTotal.text = extract.limits?.total
         labelExpent.text = extract.limits?.expent
     }
     
-    //MARK - table
+    
+    @IBAction func btnLogout(_ sender: Any) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        if let newViewController = storyBoard.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
+            self.navigationController?.pushViewController(newViewController, animated: true)
+        }
+    }
+    
+}
+
+extension ExtractListViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? CellViewController {
+            cell.checkBox.image = UIImage(named: "verified")
+            if let installment = self.viewModel?.myExtract?.installments?[indexPath.item] {
+                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                if let viewController = storyBoard.instantiateViewController(withIdentifier: "DetailsViewController") as? DetailsViewController {
+                    viewController.viewModel = DetailViewModel(extract: viewModel?.myExtract, detail: installment.detail)
+                    self.navigationController?.pushViewController(viewController, animated: true)
+                }
+            }
+        }
+    }
+        
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if let cell: CellViewController = tableView.cellForRow(at: indexPath) as? CellViewController {
+            cell.checkBox.image = UIImage(named: "empty")
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60.0
+    }
+}
+
+extension ExtractListViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return extract?.installments?.count ?? 0
+        return viewModel?.myExtract?.installments?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = extractTable.dequeueReusableCell(withIdentifier: "extractRow", for: indexPath) as! CellViewController
-        if let installment = extract?.installments?[indexPath.item] {
+        if let installment = viewModel?.myExtract?.installments?[indexPath.item] {
             cell.labelPastDue.text = installment.pastDue
             cell.labelCarnet.text = installment.carnet
             cell.labelInstallment.text = installment.installment
@@ -50,34 +87,4 @@ class ExtractListViewController: BaseViewController, UITableViewDataSource, UITa
         }
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell: CellViewController = tableView.cellForRow(at: indexPath) as! CellViewController
-        cell.checkBox.image = UIImage(named: "verified")
-        if let installment = extract?.installments?[indexPath.item] {
-            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let newViewController = storyBoard.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
-            newViewController.extract = extract
-            newViewController.detail = installment.detail
-            self.navigationController?.pushViewController(newViewController, animated: true)
-        }
-        
-    }
-    
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let cell: CellViewController = tableView.cellForRow(at: indexPath) as! CellViewController
-        cell.checkBox.image = UIImage(named: "empty")
-    }
-    
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60.0
-    }
-    
-    @IBAction func btnLogout(_ sender: Any) {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let newViewController = storyBoard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-        self.navigationController?.pushViewController(newViewController, animated: true)
-    }
-    
 }

@@ -8,10 +8,7 @@
 
 import UIKit
 
-class DetailsViewController: UIViewController {
-    
-    var extract: Extract?
-    var detail: Detail?
+class DetailsViewController: BaseViewController {
 
     @IBOutlet weak var labelUserName: UILabel!
     @IBOutlet weak var labelDueDate: UILabel!
@@ -20,6 +17,7 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var labelFinalValue: UILabel!
     @IBOutlet weak var labelStore: UILabel!
     
+    var viewModel: DetailViewModel? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,22 +25,23 @@ class DetailsViewController: UIViewController {
     }
     
     func loadComponents() {
-        if let extract = extract, let details = detail {
-            labelUserName.text = extract.name
-            labelDueDate.text = details.overdueDate
-            labelOriginalValue.text = details.originalValue
-            labelValueDiff.text = details.valueDiff
-            labelFinalValue.text = details.totalValue
-            labelStore.text = details.store
+        if let viewModel = viewModel {
+            labelUserName.text = viewModel.myExtract?.name
+            labelDueDate.text = viewModel.myDetail?.overdueDate
+            labelOriginalValue.text = viewModel.myDetail?.originalValue
+            labelValueDiff.text = viewModel.myDetail?.valueDiff
+            labelFinalValue.text = viewModel.myDetail?.totalValue
+            labelStore.text = viewModel.myDetail?.store
         }
     }
     
 
     @IBAction func backButton(_ sender: Any) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let newViewController = storyBoard.instantiateViewController(withIdentifier: "ExtractListViewController") as! ExtractListViewController
-        newViewController.extract = extract
-        self.navigationController?.pushViewController(newViewController, animated: true)
+        if let viewController = storyBoard.instantiateViewController(withIdentifier: "ExtractListViewController") as? ExtractListViewController {
+            viewController.viewModel = ExtractListViewModel(viewModel?.myExtract)
+                self.navigationController?.pushViewController(viewController, animated: true)
+        }
     }
     
 

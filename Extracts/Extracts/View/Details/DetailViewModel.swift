@@ -1,5 +1,5 @@
 //
-//  ExtractListViewModel.swift
+//  DetailsViewModel.swift
 //  Extracts
 //
 //  Created by Bruno Todeschini on 22/11/19.
@@ -8,11 +8,13 @@
 
 import Foundation
 
-class ExtractListViewModel {
+class DetailViewModel {
     
     var myExtract: Extract?
+    var myDetail: Detail?
     
-    init (_ extract: Extract?) {
+    init(extract: Extract?, detail: Detail?) {
         self.myExtract = extract
+        self.myDetail = detail
     }
 }
