@@ -9,13 +9,17 @@
 import Foundation
 
 class LoginViewModel {
-    
+
     func doLogin(user: String, password: String, success: @escaping (Extract?) -> Void, failure: @escaping (String?) -> Void){
-        let service = LoginService()
-        service.doLogin(user: user, password: password, success: { extract in
-            success(extract)
-        }, failure: {message in
-           failure(message)
-        })
+        if user.elementsEqual(password) {
+            LoginService().doLogin(user: user, password: password, success: { extract in
+                success(extract)
+            }, failure: { message in
+                failure(message)
+            })
+        } else {
+            failure("Usuário e senha não são iguais")
+        }
+        
     }
 }

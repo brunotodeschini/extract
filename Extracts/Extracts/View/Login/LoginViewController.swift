@@ -8,11 +8,12 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: BaseViewController {
 
     @IBOutlet weak var loginTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var buttonLogin: UIButton!
+    let viewModel = LoginViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,18 +46,20 @@ class LoginViewController: UIViewController {
     
     
     @IBAction func doLogin(_ sender: Any) {
-        let user = self.loginTextField.text
-        let password = self.passwordTextField.text
-        if user != nil && password != nil {
-            LoginViewModel().doLogin(user: user!, password: password!,
-                success: {extract in
+        self.showLoader()
+        if let user = self.loginTextField.text, let password = self.passwordTextField.text {
+            self.viewModel.doLogin(user: user, password: password,
+                success: { [weak self] extract in
                     let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                    let newViewController = storyBoard.instantiateViewController(withIdentifier: "ExtractListViewController") as! ExtractListViewController
-                    newViewController.extract = extract
-                    self.navigationController?.pushViewController(newViewController, animated: true)
-            }, failure: {message in
-                print (message ?? "Erro")
-            })
+                    if let viewController = storyBoard.instantiateViewController(withIdentifier: "ExtractListViewController") as? ExtractListViewController {
+                        viewController.viewModel = ExtractListViewModel(extract)
+                        self?.navigationController?.pushViewController(viewController, animated: true)
+                    }
+                    
+            }, failure: { [weak self] message in
+                self?.hideLoader()
+                self?.showAlertError(message: message ?? "Erro desconhecido")
+        })
         }
     }
 }
