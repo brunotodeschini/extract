@@ -18,7 +18,7 @@ class LoginViewModel {
                 failure(message)
             })
         } else {
-            failure("Usuário e senha não são iguais")
+            failure("Usuário e senha não correspondem")
         }
         
     }

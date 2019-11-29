@@ -28,7 +28,7 @@ class ExtractListViewController: BaseViewController {
     
 
     func loadComponents() {
-        guard let extract: Extract = self.viewModel?.myExtract else { return }
+        guard let extract: Extract = self.viewModel?.extract else { return }
         labelName.text = extract.name
         labelAvailable.text = extract.limits?.available
         labelTotal.text = extract.limits?.total
@@ -42,7 +42,6 @@ class ExtractListViewController: BaseViewController {
             self.navigationController?.pushViewController(newViewController, animated: true)
         }
     }
-    
 }
 
 extension ExtractListViewController: UITableViewDelegate {
@@ -50,10 +49,10 @@ extension ExtractListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? CellViewController {
             cell.checkBox.image = UIImage(named: "verified")
-            if let installment = self.viewModel?.myExtract?.installments?[indexPath.item] {
+            if let installment = self.viewModel?.extract?.installments?[indexPath.item] {
                 let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 if let viewController = storyBoard.instantiateViewController(withIdentifier: "DetailsViewController") as? DetailsViewController {
-                    viewController.viewModel = DetailViewModel(extract: viewModel?.myExtract, detail: installment.detail)
+                    viewController.viewModel = DetailViewModel(extract: viewModel?.extract, detail: installment.detail)
                     self.navigationController?.pushViewController(viewController, animated: true)
                 }
             }
@@ -74,12 +73,12 @@ extension ExtractListViewController: UITableViewDelegate {
 extension ExtractListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel?.myExtract?.installments?.count ?? 0
+        return viewModel?.extract?.installments?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = extractTable.dequeueReusableCell(withIdentifier: "extractRow", for: indexPath) as! CellViewController
-        if let installment = viewModel?.myExtract?.installments?[indexPath.item] {
+        if let installment = viewModel?.extract?.installments?[indexPath.item] {
             cell.labelPastDue.text = installment.pastDue
             cell.labelCarnet.text = installment.carnet
             cell.labelInstallment.text = installment.installment

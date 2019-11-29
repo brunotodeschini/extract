@@ -10,11 +10,11 @@ import Foundation
 
 class DetailViewModel {
     
-    var myExtract: Extract?
-    var myDetail: Detail?
+    var extract: Extract?
+    var detail: Detail?
     
     init(extract: Extract?, detail: Detail?) {
-        self.myExtract = extract
-        self.myDetail = detail
+        self.extract = extract
+        self.detail = detail
     }
 }

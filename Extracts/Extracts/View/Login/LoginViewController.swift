@@ -57,9 +57,10 @@ class LoginViewController: BaseViewController {
                     }
                     
             }, failure: { [weak self] message in
-                self?.hideLoader()
-                self?.showAlertError(message: message ?? "Erro desconhecido")
-        })
+                    self?.hideLoader()
+                    self?.showAlertError(message: message ?? "Erro desconhecido")
+                }
+            )
         }
     }
 }
