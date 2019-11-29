@@ -12,8 +12,7 @@ class LoginViewModel {
 
     func doLogin(user: String, password: String, success: @escaping (Extract?) -> Void, failure: @escaping (String?) -> Void){
         if user.elementsEqual(password) {
-            let service = LoginService()
-            service.doLogin(user: user, password: password, success: { extract in
+            LoginService().doLogin(user: user, password: password, success: { extract in
                 success(extract)
             }, failure: { message in
                 failure(message)
