@@ -10,9 +10,9 @@ import Foundation
 
 class ExtractListViewModel {
     
-    var myExtract: Extract?
+    var extract: Extract?
     
     init (_ extract: Extract?) {
-        self.myExtract = extract
+        self.extract = extract
     }
 }

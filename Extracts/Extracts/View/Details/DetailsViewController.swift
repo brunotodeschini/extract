@@ -26,23 +26,21 @@ class DetailsViewController: BaseViewController {
     
     func loadComponents() {
         if let viewModel = viewModel {
-            labelUserName.text = viewModel.myExtract?.name
-            labelDueDate.text = viewModel.myDetail?.overdueDate
-            labelOriginalValue.text = viewModel.myDetail?.originalValue
-            labelValueDiff.text = viewModel.myDetail?.valueDiff
-            labelFinalValue.text = viewModel.myDetail?.totalValue
-            labelStore.text = viewModel.myDetail?.store
+            labelUserName.text = viewModel.extract?.name
+            labelDueDate.text = viewModel.detail?.overdueDate
+            labelOriginalValue.text = viewModel.detail?.originalValue
+            labelValueDiff.text = viewModel.detail?.valueDiff
+            labelFinalValue.text = viewModel.detail?.totalValue
+            labelStore.text = viewModel.detail?.store
         }
     }
-    
 
     @IBAction func backButton(_ sender: Any) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         if let viewController = storyBoard.instantiateViewController(withIdentifier: "ExtractListViewController") as? ExtractListViewController {
-            viewController.viewModel = ExtractListViewModel(viewModel?.myExtract)
+            viewController.viewModel = ExtractListViewModel(viewModel?.extract)
                 self.navigationController?.pushViewController(viewController, animated: true)
         }
     }
-    
 
 }
